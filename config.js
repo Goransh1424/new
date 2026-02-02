@@ -13,17 +13,17 @@
 const CONFIG = {
   // ===== NAMES =====
   // The birthday person's name
-  recipientName: "Her Name",
+  recipientName: "Lovepreet",
 
   // Your name (the person giving this gift)
-  senderName: "Your Name",
+  senderName: "Goransh Sharma",
 
   // ===== BIRTHDAY DATE & TIME =====
   // Set the exact date and time for the countdown
   birthday: {
-    year: 2025,
-    month: 12,    // 1 = January, 12 = December
-    day: 20,
+    year: 2026,
+    month: 2,    // 1 = January, 12 = December
+    day: 5,
     hour: 0,      // 0-23 (midnight = 0, noon = 12)
     minute: 0
   },
@@ -41,7 +41,7 @@ const CONFIG = {
   // The heartfelt message on the surprise page
   loveLetter: {
     // Opening line
-    greeting: "Dear {name},",
+    greeting: "Dear Bhindi,",
 
     // Main paragraphs - add as many as you want!
     paragraphs: [
