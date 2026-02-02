@@ -13,7 +13,7 @@
 const CONFIG = {
   // ===== NAMES =====
   // The birthday person's name
-  recipientName: "Bhindi",
+  recipientName: "Lovepreet",
 
   // Your name (the person giving this gift)
   senderName: "Goransh",
