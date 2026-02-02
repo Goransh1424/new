@@ -55,20 +55,19 @@
   </main>
 
   <!-- Load config first -->
-  <script src="config.js?v=4"></script>
+<script src="config.js?v=6"></script>
 
-  <script src="config.js?v=4"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('her-name').textContent = CONFIG.recipientName;
+    document.getElementById('her-name-footer').textContent = CONFIG.recipientName;
+    document.getElementById('sender-name').textContent = CONFIG.senderName;
+    document.getElementById('theme-emoji').textContent = CONFIG.theme.emoji;
+  });
+</script>
+</body>
+</html>
 
-  <script>
-    // Initialize when DOM is ready
-    window.addEventListener('DOMContentLoaded', function () {
-      console.log('Index page loaded');
-
-      // Apply config values to the page
-      document.getElementById('her-name').textContent = CONFIG.recipientName;
-      document.getElementById('her-name-footer').textContent = CONFIG.recipientName;
-      document.getElementById('sender-name').textContent = CONFIG.senderName;
-      document.getElementById('theme-emoji').textContent = CONFIG.theme.emoji;
       
       // Set countdown subtitle with date
       const formattedDate = CONFIG.getFormattedDate();

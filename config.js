@@ -31,8 +31,8 @@ const CONFIG = {
   // ===== THEME =====
   // Customize the look and feel
   theme: {
-    // Main emoji used throughout (� rose, 💖 heart, � sunflower, etc.)
-    emoji: "�",
+    // Main emoji used throughout (🌹 rose, 💖 heart, � sunflower, etc.)
+    emoji: "💖",
     // Accent color (examples: "hsl(340, 100%, 70%)" for pink, "hsl(45, 100%, 50%)" for gold)
     accentColor: "hsl(340, 100%, 70%)"
   },
@@ -152,7 +152,7 @@ const CONFIG = {
   // ===== LEAD MESSAGE =====
   // The subtitle on the surprise page header
   leadMessage: "You make every day brighter — this one is all for you."
-};C:\Users\Administrator\Downloads\Birthday_website\iloveyou-master
+};
 
 // ===== DO NOT EDIT BELOW THIS LINE =====
 // Helper function to format date for display
