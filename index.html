@@ -71,9 +71,17 @@
       
       // Set countdown subtitle with date
       const formattedDate = CONFIG.getFormattedDate();
-      const timeStr = `${String(CONFIG.birthday.hour).padStart(2, '0')}:${String(CONFIG.birthday.minute).padStart(2, '0')}`;
-      document.getElementById('countdown-subtitle').textContent = 
-        `${CONFIG.countdownMessage} — ${formattedDate} at ${timeStr}`;
+const timeStr =
+  String(CONFIG.birthday.hour).padStart(2, '0') + ':' +
+  String(CONFIG.birthday.minute).padStart(2, '0');
+
+console.log('Formatted date:', formattedDate);
+console.log('Time string:', timeStr);
+
+const subtitleEl = document.getElementById('countdown-subtitle');
+subtitleEl.textContent =
+  CONFIG.countdownMessage + ' — ' + formattedDate + ' at ' + timeStr;
+
 
       // Initialize theme manager
       const themeManager = new EnhancedWebsite.ThemeManager();
@@ -91,14 +99,18 @@
       console.log('✨ Particles started');
 
       // Create target date from config
-      const targetDate = new Date(
-        CONFIG.birthday.year, 
-        CONFIG.getJSMonth(), 
-        CONFIG.birthday.day, 
-        CONFIG.birthday.hour, 
-        CONFIG.birthday.minute, 
-        0, 0
-      );
+      // Create target date locked to IST (UTC+5:30)
+const targetDate = new Date(
+  Date.UTC(
+    CONFIG.birthday.year,
+    CONFIG.getJSMonth(),
+    CONFIG.birthday.day,
+    CONFIG.birthday.hour - 5,
+    CONFIG.birthday.minute - 30,
+    0
+  )
+);
+
 
       // Initialize countdown
       const countdown = new EnhancedWebsite.CountdownManager(targetDate, {
