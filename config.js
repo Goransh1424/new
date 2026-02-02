@@ -13,10 +13,10 @@
 const CONFIG = {
   // ===== NAMES =====
   // The birthday person's name
-  recipientName: "Lovepreet",
+  recipientName: "Bhindi",
 
   // Your name (the person giving this gift)
-  senderName: "Goransh Sharma",
+  senderName: "Goransh",
 
   // ===== BIRTHDAY DATE & TIME =====
   // Set the exact date and time for the countdown
@@ -147,7 +147,7 @@ const CONFIG = {
   },
 
   // ===== COUNTDOWN PAGE MESSAGE =====
-  countdownMessage: "Counting down to your special moment",
+  countdownMessage: "Counting down to my special moment",
 
   // ===== LEAD MESSAGE =====
   // The subtitle on the surprise page header
