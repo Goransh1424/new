@@ -2069,4 +2069,26 @@ body::before {
   .time-box {
     min-height: 50px;
   }
+  /* ===== COUNTDOWN PAGE TEXT VISIBILITY FIX ===== */
+
+.countdown-page .subtitle {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.countdown-page .tiny {
+  color: #ffe6f0;
+  font-weight: 500;
+}
+
+.countdown-page .label {
+  color: #ffd6e5;
+  font-weight: 600;
+}
+
+.countdown-page .small-note {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
 }
