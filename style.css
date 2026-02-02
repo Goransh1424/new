@@ -2068,7 +2068,7 @@ body::before {
 
   .time-box {
     min-height: 50px;
-  }
+  }}
   /* ===== COUNTDOWN PAGE TEXT VISIBILITY FIX ===== */
 
 .countdown-page .subtitle {
@@ -2090,5 +2090,21 @@ body::before {
   color: #ffffff;
   opacity: 0.9;
 }
+/* ===== FORCE COUNTDOWN TEXT VISIBILITY ===== */
 
+body.countdown-page .subtitle {
+  color: #ffffff !important;
 }
+
+body.countdown-page .tiny {
+  color: #ffe6f0 !important;
+}
+
+body.countdown-page .label {
+  color: #ffd6e5 !important;
+}
+
+body.countdown-page .small-note {
+  color: #ffffff !important;
+}
+
