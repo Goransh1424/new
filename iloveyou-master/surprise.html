@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday 🎂💘</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
+  <meta name="description" content="Happy Birthday — surprise page" />
+  <style>
+    /* Rose Theme Override */
+    .roses {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .roses::before,
+    .roses::after {
+      content: '🌹';
+      position: absolute;
+      font-size: 2.5rem;
+      opacity: 0.15;
+      animation: floatRose 15s ease-in-out infinite;
+    }
+
+    .roses::before {
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .roses::after {
+      right: 15%;
+      animation-delay: 7s;
+    }
+
+    @keyframes floatRose {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.2;
+      }
+
+      90% {
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Extra rose petals */
+    .rose-petal {
+      position: fixed;
+      font-size: 1.5rem;
+      opacity: 0.1;
+      pointer-events: none;
+      animation: fallPetal 20s linear infinite;
+    }
+
+    @keyframes fallPetal {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.15;
+      }
+
+      90% {
+        opacity: 0.15;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* New Simple Gallery Styles */
+    .gallery-section {
+      width: 100%;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
+
+    .gallery-section h3 {
+      color: var(--accent-primary);
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .photo-carousel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1rem;
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .photo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .photo-frame {
+      text-align: center;
+      width: 100%;
+    }
+
+    .photo-frame img {
+      max-width: 100%;
+      max-height: 280px;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      object-fit: contain;
+    }
+
+    .photo-caption {
+      margin-top: 0.75rem;
+      color: var(--accent-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .photo-description {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-primary);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-btn.prev {
+      left: 5px;
+    }
+
+    .nav-btn.next {
+      right: 5px;
+    }
+
+    .gallery-controls {
+      margin-top: 1rem;
+      text-align: center;
+      display: block !important;
+      visibility: visible !important;
+    }
+
+    .slideshow-btn {
+      background: linear-gradient(135deg, hsl(340, 80%, 55%), hsl(350, 90%, 60%));
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 100, 150, 0.4);
+      transition: all 0.3s;
+      display: inline-block !important;
+      visibility: visible !important;
+    }
+
+    .slideshow-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 100, 150, 0.5);
+    }
+
+    .gallery-hint {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .photo-counter {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 500px) {
+      .photo-frame img {
+        max-height: 220px;
+      }
+
+      .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+      }
+
+      .slideshow-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+      }
+
+      .gallery-section h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="surprise-page">
+  <!-- Rose decorations -->
+  <div class="bg-embellishments">
+    <div class="roses" aria-hidden="true"></div>
+  </div>
+  <div class="rose-petal" style="left: 5%; animation-delay: 0s;">🌹</div>
+  <div class="rose-petal" style="left: 25%; animation-delay: 3s;">🥀</div>
+  <div class="rose-petal" style="left: 45%; animation-delay: 6s;">🌹</div>
+  <div class="rose-petal" style="left: 65%; animation-delay: 9s;">🥀</div>
+  <div class="rose-petal" style="left: 85%; animation-delay: 12s;">🌹</div>
+
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <header class="surprise-header">
+    <div class="top-left-badge" id="date-badge">Loading...</div>
+    <h1 class="surprise-title">
+      <span class="emoji">🌹</span> Happy Birthday, <span id="her-name">Loading...</span>
+      <span class="emoji">🎂💘🌹</span>
+    </h1>
+    <p class="lead" id="lead-message">You make every day brighter — this one is all for you.</p>
+    <div class="header-decoration" aria-hidden="true">
+      <span class="emoji">🌹 ✨ 💖 ✨ 🌹</span>
+    </div>
+  </header>
+
+  <main class="surprise-main">
+    <section class="music-control" aria-label="Background music">
+      <audio id="bg-music" loop preload="auto"></audio>
+      <button id="start-magic" class="btn magic-btn" aria-pressed="false">
+        <span class="emoji">✨</span> Tap to start the magic <span class="emoji">✨</span>
+      </button>
+      <div id="music-toggle-row" class="music-row hidden">
+        <button id="music-play" class="btn small">Play</button>
+        <button id="music-pause" class="btn small">Pause</button>
+        <label class="mute-toggle"><input id="mute-checkbox" type="checkbox" />Mute</label>
+      </div>
+    </section>
+
+    <!-- NEW SIMPLIFIED GALLERY -->
+    <section class="gallery-section" aria-label="Photo gallery">
+      <h3>🌹 Our Memories 🌹</h3>
+
+      <div class="photo-carousel">
+        <div class="photo-container">
+          <button class="nav-btn prev" id="prev-btn" aria-label="Previous photo">‹</button>
+
+          <div class="photo-frame" id="photo-frame">
+            <img id="current-photo" src="images/photo1.jpg" alt="Memory" />
+            <div class="photo-caption" id="photo-caption">Loading...</div>
+            <div class="photo-description" id="photo-desc">Loading...</div>
+          </div>
+
+          <button class="nav-btn next" id="next-btn" aria-label="Next photo">›</button>
+        </div>
+
+        <div class="photo-counter" id="photo-counter">1 / 20</div>
+      </div>
+
+      <!-- BUTTON IS NOW OUTSIDE THE CAROUSEL WITH GUARANTEED VISIBILITY -->
+      <div class="gallery-controls">
+        <button class="slideshow-btn" id="slideshow-btn">▶ Start Slideshow</button>
+        <small class="gallery-hint">Swipe or use ← → keys to navigate</small>
+      </div>
+    </section>
+
+    <section class="love-letter" aria-labelledby="letter-heading">
+      <h2 id="letter-heading">A Love Letter for You 💝</h2>
+      <div id="love-letter-content">
+        <!-- Love letter will be dynamically generated from config -->
+      </div>
+    </section>
+
+    <section class="reasons">
+      <h3>Why I love you & Why you're special</h3>
+      <div class="reasons-inner">
+        <ul class="reason-grid" id="reasons-list">
+          <!-- Reasons will be dynamically generated from config -->
+        </ul>
+        <div class="special-list" aria-label="Why she's the best" id="special-qualities-section">
+          <h4>Why she's the best girlfriend</h4>
+          <ul id="special-qualities-list">
+            <!-- Special qualities will be dynamically generated from config -->
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="surprise-footer">
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top" title="Back to top">↑</button>
+    <small>Made with love by <strong id="sender-name">Someone</strong> for <strong id="her-name-footer">Someone
+        Special</strong> 💞</small>
+  </footer>
+
+  <!-- Load config first -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // ===== SIMPLE SLIDESHOW IMPLEMENTATION =====
+    let currentSlide = 0;
+    let autoplayInterval = null;
+    let slideshowAudio = null;
+
+    // Get elements
+    const photoImg = document.getElementById('current-photo');
+    const captionEl = document.getElementById('photo-caption');
+    const descEl = document.getElementById('photo-desc');
+    const counterEl = document.getElementById('photo-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const slideshowBtn = document.getElementById('slideshow-btn');
+
+    function showSlide(index) {
+      const photos = CONFIG.photos;
+      if (index < 0) index = photos.length - 1;
+      if (index >= photos.length) index = 0;
+      currentSlide = index;
+
+      const photo = photos[currentSlide];
+      photoImg.src = `images/${photo.src}`;
+      photoImg.alt = photo.caption;
+      captionEl.textContent = photo.caption;
+      descEl.textContent = photo.description;
+      counterEl.textContent = `${currentSlide + 1} / ${photos.length}`;
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    function toggleSlideshow() {
+      if (autoplayInterval) {
+        // Stop slideshow
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+        slideshowBtn.textContent = '▶ Start Slideshow';
+        if (slideshowAudio) { slideshowAudio.pause(); slideshowAudio = null; }
+        document.getElementById('bg-music').play().catch(() => { });
+      } else {
+        // Start slideshow
+        autoplayInterval = setInterval(nextSlide, 3000);
+        slideshowBtn.textContent = '⏹ Stop Slideshow';
+        // Switch to slideshow music
+        const bgMusic = document.getElementById('bg-music');
+        if (!bgMusic.paused) bgMusic.pause();
+        slideshowAudio = new Audio(`music/${CONFIG.music.slideshowSong}`);
+        slideshowAudio.loop = true;
+        slideshowAudio.volume = 0.7;
+        slideshowAudio.play().catch(() => { });
+      }
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+    slideshowBtn.addEventListener('click', toggleSlideshow);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    const carousel = document.querySelector('.photo-carousel');
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // ===== DYNAMIC CONTENT GENERATION =====
+    function generateLoveLetter() {
+      const container = document.getElementById('love-letter-content');
+      let html = `<p class="letter">Dear <strong>${CONFIG.recipientName}</strong>,</p>`;
+      CONFIG.loveLetter.paragraphs.forEach(para => {
+        html += `<p class="letter">${CONFIG.replaceName(para)}</p>`;
+      });
+      html += `<p class="letter" style="text-align: right; margin-top: 1.5rem;">${CONFIG.loveLetter.closing}<br><em><strong>${CONFIG.senderName}</strong></em> <span class="emoji">💖</span></p>`;
+      container.innerHTML = html;
+    }
+
+    function generateReasons() {
+      const list = document.getElementById('reasons-list');
+      list.innerHTML = CONFIG.reasons.map(reason => {
+        const emoji = reason.title.toLowerCase().includes('smile') ? ' 🌹' : '';
+        return `<li><strong>${reason.title}${emoji}</strong><span>— ${reason.description}</span></li>`;
+      }).join('');
+    }
+
+    function generateSpecialQualities() {
+      const list = document.getElementById('special-qualities-list');
+      list.innerHTML = CONFIG.specialQualities.map(quality => {
+        const emoji = quality.title.toLowerCase().includes('rose') || quality.title.toLowerCase().includes('beautiful') ? ' 🌹' : '';
+        return `<li><strong>${quality.title}${emoji}:</strong> ${quality.description}</li>`;
+      }).join('');
+    }
+
+    function applyConfig() {
+      document.getElementById('her-name').textContent = CONFIG.recipientName;
+      document.getElementById('her-name-footer').textContent = CONFIG.recipientName;
+      document.getElementById('sender-name').textContent = CONFIG.senderName;
+      document.getElementById('date-badge').textContent = CONFIG.getFormattedDate();
+      document.getElementById('lead-message').textContent = CONFIG.leadMessage;
+      document.getElementById('bg-music').src = `music/${CONFIG.music.mainSong}`;
+
+      showSlide(0); // Load first photo
+      generateLoveLetter();
+      generateReasons();
+      generateSpecialQualities();
+    }
+
+    // ===== MAIN INITIALIZATION =====
+    window.addEventListener('DOMContentLoaded', function () {
+      applyConfig();
+
+      const themeManager = new EnhancedWebsite.ThemeManager();
+      const canvas = document.getElementById('confetti-canvas');
+      const confetti = new EnhancedWebsite.ParticleSystem(canvas);
+
+      // Music controls
+      const startBtn = document.getElementById('start-magic');
+      const audio = document.getElementById('bg-music');
+      const musicRow = document.getElementById('music-toggle-row');
+
+      function celebrationBurst() {
+        confetti.start();
+        for (let i = 0; i < 150; i++) {
+          const particle = confetti.createParticle(Math.random() > 0.5 ? 'star' : 'heart');
+          particle.y = window.innerHeight / 2;
+          particle.x = window.innerWidth / 2;
+          particle.speedY = EnhancedWebsite.utils.random(-10, -2);
+          particle.speedX = EnhancedWebsite.utils.random(-8, 8);
+          confetti.particles.push(particle);
+        }
+      }
+
+      function announceHappyBirthday() {
+        const announcement = document.createElement('div');
+        announcement.innerHTML = `<h1 style="font-family: Dancing Script, serif; font-size: clamp(2.5rem, 10vw, 5rem); color: hsl(340, 90%, 50%); filter: none;"><span class="emoji">🎉</span> Happy Birthday! <span class="emoji">🎉</span></h1>`;
+        announcement.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); z-index: 10000; text-align: center; pointer-events: none; animation: birthdayAnnounce 4s ease-out forwards; text-shadow: 0 0 20px rgba(255,255,255,0.8);';
+        document.body.appendChild(announcement);
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(`Happy Birthday ${CONFIG.recipientName}!`);
+          utterance.rate = 0.9; utterance.pitch = 1.2; utterance.volume = 0.8;
+          setTimeout(() => window.speechSynthesis.speak(utterance), 500);
+        }
+        setTimeout(() => announcement.remove(), 4000);
+      }
+
+      startBtn.addEventListener('click', async function () {
+        startBtn.classList.add('active');
+        startBtn.innerHTML = 'Welcome — enjoy <span class="emoji">✨</span>';
+        celebrationBurst();
+        announceHappyBirthday();
+        try { await audio.play(); } catch (err) { console.warn('Autoplay blocked:', err); }
+        musicRow.classList.remove('hidden');
+        setTimeout(() => startBtn.classList.add('hidden'), 1200);
+      });
+
+      document.getElementById('music-play').addEventListener('click', () => audio.play());
+      document.getElementById('music-pause').addEventListener('click', () => audio.pause());
+      document.getElementById('mute-checkbox').addEventListener('change', (e) => audio.muted = e.target.checked);
+      if (new URLSearchParams(window.location.search).has('preview')) setTimeout(() => startBtn.click(), 500);
+
+      // Scroll to top
+      document.getElementById('scroll-top').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Add animation keyframes
+      const style = document.createElement('style');
+      style.textContent = '@keyframes birthdayAnnounce { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0); } 20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); } 40% { transform: translate(-50%, -50%) scale(0.95); } 60% { transform: translate(-50%, -50%) scale(1.05); } 80% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } }';
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+
+</html>

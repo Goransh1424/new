@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon — Happy Birthday 💖</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="A beautiful countdown to a special birthday." />
+</head>
+
+<body class="countdown-page">
+  <div class="bg-embellishments">
+    <!-- Floating hearts created with CSS pseudo-elements, plus animated sparkles -->
+    <div class="hearts" aria-hidden="true"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+  </div>
+
+  <main class="center-vertical">
+    <header class="hero">
+      <!-- Replace (Her Name) below -->
+      <h1 class="title">A Surprise for <span id="her-name">Her Name</span> 💖</h1>
+      <p class="subtitle">Counting down to your special moment — 20 December at 00:00</p>
+    </header>
+
+    <section class="countdown" aria-live="polite" aria-atomic="true">
+      <div class="time-grid" id="time-grid">
+        <div class="time-box">
+          <div id="days" class="num">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="time-box">
+          <div id="hours" class="num">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="time-box">
+          <div id="minutes" class="num">00</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="time-box">
+          <div id="seconds" class="num">00</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+
+      <p class="tiny">Tip: open this page on her phone just before midnight for the perfect reveal ✨</p>
+
+      <div class="controls">
+        <button id="preview-btn" class="btn subtle">Preview surprise (skip countdown)</button>
+        <button id="customize-btn" class="btn">Customize names & assets</button>
+      </div>
+    </section>
+    days: document.getElementById('days'),
+    hours: document.getElementById('hours'),
+    minutes: document.getElementById('minutes'),
+    seconds: document.getElementById('seconds')
+    });
+    countdown.start();
+
+    // Schedule redirect at target
+    (function scheduleRedirectAtTarget() {
+    const now = new Date();
+    const msUntilTarget = targetDate - now;
+    if (msUntilTarget <= 0) return; setTimeout(()=> {
+      window.location.href = SURPRISE_PAGE;
+      }, msUntilTarget + 50);
+      })();
+
+      // Add ripple effects to buttons
+      document.querySelectorAll('.btn').forEach(btn => {
+      EnhancedWebsite.addRippleEffect(btn);
+      });
+
+      // Buttons
+      document.getElementById('preview-btn').addEventListener('click', () => {
+      window.location.href = SURPRISE_PAGE + '?preview=1';
+      });
+
+      document.getElementById('customize-btn').addEventListener('click', () => {
+      alert('To customize: open index.html in a text editor and change the variables at the top of the script (name,
+      date, surprise page path).');
+      });
+      </script>
+</body>
+
+</html>

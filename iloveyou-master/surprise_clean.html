@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday 🎂💘</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Happy Birthday — surprise page" />
+</head>
+
+<body class="surprise-page">
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <header class="surprise-header">
+    <div class="top-left-badge">20 December</div>
+    <h1 class="surprise-title">Happy Birthday, <span id="her-name-2">Niharika</span> 🎂💘</h1>
+    <p class="lead">You make every day brighter — this one is all for you.</p>
+  </header>
+
+  <main class="surprise-main">
+    <section class="music-control" aria-label="Background music">
+      <!-- Replace music/song.mp3 with your file -->
+      <audio id="bg-music" src="music/song.mp3" loop preload="auto"></audio>
+
+      <!-- Button to start music and reveal magic -->
+      <button id="start-magic" class="btn magic-btn" aria-pressed="false">
+        ✨ Tap to start the magic ✨
+      </button>
+
+      <div id="music-toggle-row" class="music-row hidden">
+        <button id="music-play" class="btn small">Play</button>
+        <button id="music-pause" class="btn small">Pause</button>
+        <label class="mute-toggle">
+          <input id="mute-checkbox" type="checkbox" />
+          Mute
+        </label>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="Photo gallery">
+      <h3>Memories</h3>
+
+      <!-- Simple accessible slideshow / carousel -->
+      <div class="slideshow" id="slideshow" tabindex="0" aria-roledescription="carousel">
+        <button class="slide-btn prev" id="prev-slide" aria-label="Previous photo">‹</button>
+        <div class="slides-wrapper">
+          <!-- Replace image filenames with yours inside /images/ -->
+          <figure class="slide" data-index="0">
+            <img src="images/photo1.jpg" alt="Us at the beach" onerror="this.style.opacity='.25'" />
+            <figcaption>Our beach day — remember the sunset?</figcaption>
+            <!-- Replace this paragraph with a short description about the photo -->
+            <p class="photo-desc">A warm evening at the beach; we laughed until the sun went down. (Replace with your
+              own note)</p>
+          </figure>
+
+          <figure class="slide" data-index="1">
+            <img src="images/photo2.jpg" alt="Coffee date" onerror="this.style.opacity='.25'" />
+            <figcaption>Late night coffee & long talks</figcaption>
+            <p class="photo-desc">Our favorite little cafe — we talked about everything and nothing. (Replace with your
+              own note)</p>
+          </figure>
+
+          <figure class="slide" data-index="2">
+            <img src="images/photo3.jpg" alt="Smiling selfie" onerror="this.style.opacity='.25'" />
+            <figcaption>That one selfie where you stole my heart</figcaption>
+            <p class="photo-desc">One of my favorite smiles — you always make my day brighter. (Replace with your own
+              note)</p>
+          </figure>
+
+          <!-- Add more <figure class="slide"> blocks here -->
+        </div>
+        <button class="slide-btn next" id="next-slide" aria-label="Next photo">›</button>
+      </div>
+
+      <div class="slideshow-controls">
+        <button id="toggle-autoplay" class="btn small">Start slideshow</button>
+        <small class="hint">Use ← and → keys to navigate photos. Click images to play songs!</small>
+      </div>
+    </section>
+
+    <section class="love-letter" aria-labelledby="letter-heading">
+      <h2 id="letter-heading">A little love letter</h2>
+      <!-- Replace this text with your personal message -->
+      <p class="letter">
+        <!-- customize this paragraph with your own words -->
+        Dear <strong>Niharika</strong>, every moment with you feels like a warm sunrise. I made this little surprise to
+        celebrate you — your laugh, your kindness, and the way you make life sweeter. Happy birthday, my love. —
+        <em>(Your Name)</em>
+      </p>
+    </section>
+
+    <section class="reasons">
+      <h3>Why I love you &amp; Why you're special</h3>
+      <div class="reasons-inner">
+        <ul class="reason-grid">
+          <li><strong>Your laugh</strong><span>— lights up any room.</span></li>
+          <li><strong>Your kindness</strong><span>— gentle to everyone around you.</span></li>
+          <li><strong>Your courage</strong><span>— inspires me daily.</span></li>
+          <li><strong>Your curiosity</strong><span>— makes life an adventure.</span></li>
+          <li><strong>Your hugs</strong><span>— the best place in the world.</span></li>
+        </ul>
+
+        <div class="special-list" aria-label="Why she's the best">
+          <h4>Why she's the best girlfriend</h4>
+          <ul>
+            <li><strong>Supportive:</strong> She always stands by me through ups and downs.</li>
+            <li><strong>Thoughtful:</strong> Notices the little things that make me smile.</li>
+            <li><strong>Adventurous:</strong> Turns ordinary days into memories.</li>
+            <li><strong>Kind-hearted:</strong> Compassionate to everyone she meets.</li>
+            <li><strong>Fun-loving:</strong> Laughs easily and makes life joyful.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 10000;
+    text-align: center;
+    pointer-events: none;
+    background: linear-gradient(135deg, hsl(340, 100%, 70%), hsl(350, 100%, 75%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255, 107, 154, 0.6);
+    animation: birthdayAnnounce 4s ease-out forwards;
+    `;
+
+    document.body.appendChild(announcement);
+
+    // Try text-to-speech if available
+    if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance('Happy Birthday Niharika!');
+    utterance.rate = 0.9;
+    utterance.pitch = 1.2;
+    utterance.volume = 0.8;
+    setTimeout(() => {
+    window.speechSynthesis.speak(utterance);
+    }, 500);
+    }
+
+    setTimeout(() => announcement.remove(), 4000);
+    }
+
+    startBtn.addEventListener('click', async function () {
+    // Animate button
+    startBtn.classList.add('active');
+    startBtn.textContent = 'Welcome — enjoy ✨';
+    startBtn.setAttribute('aria-pressed', 'true');
+
+    // Party popper burst!
+    partyPopperBurst();
+
+    // Happy Birthday announcement
+    announceHappyBirthday();
+
+    // Try to play background audio
+    try {
+    await audio.play();
+    } catch (err) {
+    console.warn('Autoplay blocked — user must press play manually.', err);
+    }
+
+    revealControls();
+    setTimeout(() => startBtn.classList.add('hidden'), 1200);
+    });
+
+    play.addEventListener('click', () => audio.play());
+    pause.addEventListener('click', () => audio.pause());
+    mute.addEventListener('change', () => audio.muted = mute.checked);
+
+    // If page opened with ?preview=1 param, auto-trigger start
+    if (new URLSearchParams(window.location.search).has('preview')) {
+    setTimeout(() => document.getElementById('start-magic').click(), 500);
+    }
+    })();
+
+    // Enhanced slideshow with touch gestures
+    const slideshowContainer = document.getElementById('slideshow');
+    const slideshow = new EnhancedWebsite.EnhancedSlideshow(slideshowContainer);
+
+    // Connect previous/next buttons
+    document.getElementById('prev-slide').addEventListener('click', () => slideshow.prev());
+    document.getElementById('next-slide').addEventListener('click', () => slideshow.next());
+
+    // Keyboard navigation
+    slideshowContainer.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') slideshow.prev();
+    if (e.key === 'ArrowRight') slideshow.next();
+    });
+
+    // Image click to play song
+    document.querySelectorAll('.slide img').forEach((img, index) => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    // Get the song for this image
+    const songPath = IMAGE_SONGS[index];
+    if (!songPath) {
+    console.log('No song configured for image', index + 1);
+    return;
+    }
+
+    // Stop any currently playing image music
+    if (currentImageAudio) {
+    currentImageAudio.pause();
+    currentImageAudio.currentTime = 0;
+    }
+
+    // Pause background music while image song plays
+    const bgMusic = document.getElementById('bg-music');
+    const wasBgPlaying = !bgMusic.paused;
+    if (wasBgPlaying) {
+    bgMusic.pause();
+    }
+
+    // Create and play new audio
+    currentImageAudio = new Audio(songPath);
+    currentImageAudio.volume = 0.7;
+
+    currentImageAudio.play().catch(err => {
+    console.log('Could not play song:', err);
+    console.log('Make sure the file exists at:', songPath);
+    // Resume background music if song fails
+    if (wasBgPlaying) bgMusic.play();
+    });
+
+    // Resume background music when song ends
+    currentImageAudio.addEventListener('ended', () => {
+    if (wasBgPlaying) {
+    bgMusic.play();
+    }
+    });
+
+    // Visual feedback
+    img.style.animation = 'imagePulse 0.5s ease';
+    setTimeout(() => img.style.animation = '', 500);
+
+    // Show notification
+    const notification = document.createElement('div');
+    notification.textContent = '🎵 Playing song...';
+    notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-lg);
+    z-index: 10000;
+    animation: slideDown 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-weight: 600;
+    `;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+    });
+    });
+
+    // Autoplay toggle
+    const toggleAuto = document.getElementById('toggle-autoplay');
+    toggleAuto.addEventListener('click', () => {
+    if (!slideshow.isAutoPlaying) {
+    slideshow.startAutoplay();
+    toggleAuto.textContent = 'Stop slideshow';
+
+    // Request fullscreen
+    const slideshowEl = document.getElementById('slideshow');
+    if (slideshowEl.requestFullscreen) {
+    slideshowEl.requestFullscreen().catch(err => console.log('Fullscreen failed:', err));
+    } else if (slideshowEl.webkitRequestFullscreen) {
+    slideshowEl.webkitRequestFullscreen();
+    }
+    } else {
+    slideshow.stopAutoplay();
+    toggleAuto.textContent = 'Start slideshow';
+
+    // Exit fullscreen
+    if (document.fullscreenElement) {
+    document.exitFullscreen();
+    } else if (document.webkitFullscreenElement) {
+    document.webkitExitFullscreen();
+    }
+    }
+    });
+
+    // Add ripple effects to all buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+    EnhancedWebsite.addRippleEffect(btn);
+    });
+
+    // Setup share button
+    EnhancedWebsite.setupShareButton();
+
+    // Scroll animations for elements
+    const scrollAnim = new EnhancedWebsite.ScrollAnimations();
+    scrollAnim.observe(document.querySelectorAll('.love-letter, .gallery, .reasons'));
+
+    // Add floating hearts on click anywhere (except buttons and images)
+    let clickHeartTimeout;
+    document.addEventListener('click', (e) => {
+    if (e.target.closest('button') || e.target.closest('a') || e.target.tagName === 'IMG') return;
+
+    clearTimeout(clickHeartTimeout);
+    clickHeartTimeout = setTimeout(() => {
+    const heart = document.createElement('div');
+    heart.textContent = '💖';
+    heart.style.cssText = `
+    position: fixed;
+    left: ${e.clientX - 15}px;
+    top: ${e.clientY - 15}px;
+    font-size: 30px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: floatUpHeart 2s ease-out forwards;
+    `;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+    }, 100);
+    });
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+    @keyframes floatUpHeart {
+    0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    }
+    100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(1.5) rotate(15deg);
+    }
+    }
+    @keyframes birthdayAnnounce {
+    0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+    }
+    20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+    }
+    40% {
+    transform: translate(-50%, -50%) scale(0.95) rotate(-2deg);
+    }
+    60% {
+    transform: translate(-50%, -50%) scale(1.05) rotate(1deg);
+    }
+    80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+    100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8) rotate(0deg);
+    }
+    }
+    @keyframes imagePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 107, 154, 0.6); }
+    }
+    @keyframes slideDown {
+    from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+    }
+    to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    }
+    }
+    @keyframes fadeOut {
+    to {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+    }
+    }
+    `;
+    document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "nihweb",
+  "version": "1.0.0",
+  "description": "Romantic birthday surprise website for Niharika",
+  "scripts": {
+    "start": "http-server -p 8080 -o",
+    "dev": "http-server -p 8080 -c-1"
+  },
+  "keywords": [
+    "birthday",
+    "romantic",
+    "surprise"
+  ],
+  "author": "Chetan",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

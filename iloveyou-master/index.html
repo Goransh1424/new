@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon — Happy Birthday 💖</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Inter:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
+  <meta name="description" content="A beautiful countdown to a special birthday." />
+</head>
+
+<body class="countdown-page">
+  <div class="bg-embellishments">
+    <div class="hearts" aria-hidden="true"></div>
+    <div class="sparkles" aria-hidden="true"></div>
+  </div>
+
+  <main class="center-vertical">
+    <header class="hero">
+      <h1 class="title">A Surprise for <span id="her-name">Loading...</span> <span class="emoji" id="theme-emoji">💖</span></h1>
+      <p class="subtitle" id="countdown-subtitle">Counting down to your special moment</p>
+    </header>
+
+    <section class="countdown" aria-live="polite" aria-atomic="true">
+      <div class="time-grid" id="time-grid">
+        <div class="time-box">
+          <div id="days" class="num">00</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="time-box">
+          <div id="hours" class="num">00</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="time-box">
+          <div id="minutes" class="num">00</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="time-box">
+          <div id="seconds" class="num">00</div>
+          <div class="label">Seconds</div>
+        </div>
+      </div>
+
+      <p class="tiny">Tip: open this page just before midnight for the perfect reveal <span class="emoji">✨</span></p>
+    </section>
+
+    <footer class="small-note">
+      <small>Made with <span class="emoji">❤️</span> by <span id="sender-name">Someone</span> for <span id="her-name-footer">Someone Special</span></small>
+    </footer>
+  </main>
+
+  <!-- Load config first -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Initialize when DOM is ready
+    window.addEventListener('DOMContentLoaded', function () {
+      console.log('Index page loaded');
+
+      // Apply config values to the page
+      document.getElementById('her-name').textContent = CONFIG.recipientName;
+      document.getElementById('her-name-footer').textContent = CONFIG.recipientName;
+      document.getElementById('sender-name').textContent = CONFIG.senderName;
+      document.getElementById('theme-emoji').textContent = CONFIG.theme.emoji;
+      
+      // Set countdown subtitle with date
+      const formattedDate = CONFIG.getFormattedDate();
+      const timeStr = `${String(CONFIG.birthday.hour).padStart(2, '0')}:${String(CONFIG.birthday.minute).padStart(2, '0')}`;
+      document.getElementById('countdown-subtitle').textContent = 
+        `${CONFIG.countdownMessage} — ${formattedDate} at ${timeStr}`;
+
+      // Initialize theme manager
+      const themeManager = new EnhancedWebsite.ThemeManager();
+
+      // Set up particle canvas
+      let particleCanvas = document.getElementById('particle-canvas');
+      if (!particleCanvas) {
+        particleCanvas = document.createElement('canvas');
+        particleCanvas.id = 'particle-canvas';
+        particleCanvas.style.cssText = 'position: fixed; inset: 0; pointer-events: none; z-index: 0;';
+        document.body.insertBefore(particleCanvas, document.body.firstChild);
+      }
+      const particles = new EnhancedWebsite.ParticleSystem(particleCanvas);
+      particles.start();
+      console.log('✨ Particles started');
+
+      // Create target date from config
+      const targetDate = new Date(
+        CONFIG.birthday.year, 
+        CONFIG.getJSMonth(), 
+        CONFIG.birthday.day, 
+        CONFIG.birthday.hour, 
+        CONFIG.birthday.minute, 
+        0, 0
+      );
+
+      // Initialize countdown
+      const countdown = new EnhancedWebsite.CountdownManager(targetDate, {
+        days: document.getElementById('days'),
+        hours: document.getElementById('hours'),
+        minutes: document.getElementById('minutes'),
+        seconds: document.getElementById('seconds')
+      });
+      countdown.start();
+
+      // Auto-redirect when countdown reaches zero
+      const now = new Date();
+      const msUntilTarget = targetDate - now;
+      if (msUntilTarget > 0) {
+        setTimeout(() => {
+          window.location.href = 'surprise.html';
+        }, msUntilTarget + 50);
+      }
+
+      // Add ripple effects to buttons
+      document.querySelectorAll('.btn').forEach(btn => {
+        EnhancedWebsite.addRippleEffect(btn);
+      });
+    });
+  </script>
+</body>
+
+</html>
