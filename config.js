@@ -23,9 +23,9 @@ const CONFIG = {
   birthday: {
     year: 2026,
     month: 2,    // 1 = January, 12 = December
-    day: 3,
-    hour: 12,      // 0-23 (midnight = 0, noon = 12)
-    minute: 10
+    day: 5,
+    hour: 0,      // 0-23 (midnight = 0, noon = 12)
+    minute: 0
   },
 
   // ===== THEME =====
