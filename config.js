@@ -45,15 +45,15 @@ const CONFIG = {
 
     // Main paragraphs - add as many as you want!
     paragraphs: [
-      "Every moment with you feels like a warm sunrise, painting my world in colors I never knew existed. As you celebrate another year of your beautiful journey, I want you to know how incredibly special you are to me.",
+      "Even though I can’t be there with you to celebrate today, my heart is right beside you. Distance may keep us apart in this moment, but it can never lessen how deeply I care for you. All I want is for you to feel loved, cherished, and happy — today and always.",
 
-      "Your laugh is the melody that brightens even my darkest days. Your kindness touches everyone around you, creating ripples of warmth that spread far and wide. The way you see the world, with such curiosity and wonder, reminds me to appreciate the little miracles we often overlook.",
+      "Your happiness means more to me than anything else. Knowing that you’re smiling, laughing, and feeling special is enough for my heart to feel complete. No matter where I am, I’ll always be there for you — supporting you, cheering for you, and loving you in every way I can.",
 
       "I made this little surprise to celebrate not just your birthday, but the amazing person you are every single day. You inspire me to be better, to love deeper, and to cherish each moment we share together.",
 
       "Thank you for being you — for your courage, your compassion, your infectious joy, and for making life an adventure worth living. Here's to you, to us, and to all the beautiful memories yet to come.",
 
-      "Happy birthday, my love. You deserve all the happiness in the world, today and every day."
+      "Happy birthday, my love. You deserve all the happiness in the world, today and every day. LOVE YOU SOOOOOOO MUCH......."
     ],
 
     // Closing signature
