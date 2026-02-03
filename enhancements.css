@@ -354,3 +354,21 @@ body {
   right: 10px;
   animation-delay: 2s;
 }
+/* ===== MOBILE TEXT VISIBILITY FIX ===== */
+@media (max-width: 768px) {
+  .love-letter .letter,
+  .love-letter p,
+  .photo-desc,
+  .slide figcaption,
+  .reason-grid li span,
+  .lead {
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 1 !important;
+  }
+
+  .love-letter {
+    background: rgba(0, 0, 0, 0.45);
+  }
+}

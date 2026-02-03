@@ -435,20 +435,35 @@ class EnhancedSlideshow {
   }
 
   show(index) {
-    this.currentIndex = ((index % this.slides.length) + this.slides.length) % this.slides.length;
-    this.wrapper.style.transform = `translateX(-${this.currentIndex * 100}%)`;
-
-    // Update aria-hidden
-    this.slides.forEach((slide, i) => {
-      slide.setAttribute('aria-hidden', i !== this.currentIndex);
+    this.currentIndex =
+      ((index % this.slides.length) + this.slides.length) % this.slides.length;
+  
+    const slide = this.slides[this.currentIndex];
+    const img = slide.querySelector('img');
+  
+    if (img && !img.complete) {
+      img.onload = () => {
+        this.wrapper.style.transform =
+          `translateX(-${this.currentIndex * 100}%)`;
+      };
+    } else {
+      this.wrapper.style.transform =
+        `translateX(-${this.currentIndex * 100}%)`;
+    }
+  
+    // Accessibility
+    this.slides.forEach((s, i) => {
+      s.setAttribute('aria-hidden', i !== this.currentIndex);
     });
-
-    // Add Ken Burns effect to current image
-    const currentImage = this.slides[this.currentIndex].querySelector('img');
-    if (currentImage) {
-      currentImage.style.animation = 'kenBurns 20s ease-in-out infinite';
+  
+    // Ken Burns reset
+    if (img) {
+      img.style.animation = 'none';
+      img.offsetHeight; // force reflow
+      img.style.animation = 'kenBurns 20s ease-in-out infinite';
     }
   }
+  
 
   next() {
     this.show(this.currentIndex + 1);
@@ -460,7 +475,7 @@ class EnhancedSlideshow {
 
   startAutoplay() {
     this.isAutoPlaying = true;
-    this.autoplayInterval = setInterval(() => this.next(), 7000); // 7 seconds per slide
+    this.autoplayInterval = setInterval(() => this.next(), 8000); // 7 seconds per slide
   }
 
   stopAutoplay() {
