@@ -355,20 +355,22 @@ body {
   animation-delay: 2s;
 }
 /* ===== MOBILE TEXT VISIBILITY FIX ===== */
-@media (max-width: 768px) {
-  .love-letter .letter,
-  .love-letter p,
-  .photo-desc,
-  .slide figcaption,
-  .reason-grid li span,
-  .lead {
-    color: #ffffff !important;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 1 !important;
+@media (max-width: 600px) {
+  .love-letter {
+    padding: 1rem !important;
+    margin: 0.5rem !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
-  .love-letter {
-    background: rgba(0, 0, 0, 0.45);
+  .love-letter .letter {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    color: #ffffff !important;
   }
 }
+
