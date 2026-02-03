@@ -263,12 +263,14 @@ body {
 }
 /* ===== EXTRA SUNFLOWER DECORATIONS ===== */
 /* Add more floating sunflowers at different positions */
-.surprise-page::before,
-.surprise-page::after {
-  content: '🌻';
-  position: fixed;
-  font-size: 2.5rem;
-  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.4));
+.sunflowers::before,
+.sunflowers::after {
+  content: '❤️';
+  font-size: 2.8rem;
+  opacity: 0.9;
+
+
+ 
   animation: gentleFloat 18s ease-in-out infinite;
   pointer-events: none;
   z-index: 1;
