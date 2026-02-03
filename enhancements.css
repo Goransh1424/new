@@ -373,4 +373,11 @@ body {
     color: #ffffff !important;
   }
 }
+/* FORCE NAME TO USE SAME GRADIENT AS TITLE */
+.title span,
+.surprise-title span {
+  background: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
